@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Search, SlidersHorizontal } from "lucide-react"
 import { tours, type TourTheme } from "@/lib/data/tours"
 import { TourCard } from "@/components/site/tour-card"
@@ -24,12 +25,17 @@ function matchesDuration(days: number, d: string) {
 export function ToursBrowser({
   initial,
 }: {
-  initial: { region?: string; theme?: string; duration?: string }
+  initial?: { region?: string; theme?: string; duration?: string }
 }) {
+  const searchParams = useSearchParams()
+  const initialRegion = initial?.region ?? searchParams.get("region") ?? ""
+  const initialTheme = initial?.theme ?? searchParams.get("theme") ?? ""
+  const initialDuration = initial?.duration ?? searchParams.get("duration") ?? ""
+
   const [query, setQuery] = useState("")
-  const [region, setRegion] = useState(initial.region ?? "")
-  const [theme, setTheme] = useState(initial.theme ?? "")
-  const [duration, setDuration] = useState(initial.duration ?? "")
+  const [region, setRegion] = useState(initialRegion)
+  const [theme, setTheme] = useState(initialTheme)
+  const [duration, setDuration] = useState(initialDuration)
   const [sort, setSort] = useState("popular")
 
   const results = useMemo(() => {
