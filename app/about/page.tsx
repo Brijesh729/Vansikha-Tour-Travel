@@ -1,48 +1,62 @@
-import { Metadata } from "next";
-import { buildMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/config/site";
+import type { Metadata } from "next"
+import Image from "next/image"
+import { PageHero } from "@/components/site/page-hero"
+import { SectionHeading } from "@/components/site/section-heading"
+import { StatsStrip, Testimonials, WhyChooseUs } from "@/components/home/sections"
+import { CtaBand } from "@/components/site/cta-band"
 
-export const metadata: Metadata = buildMetadata(
-  {
-    title: "About Us | Vansikha Tour & Travel",
-    description: "Learn about Vansikha Tour & Travel, a Rajasthan-based travel service offering tour packages and car rental across Rajasthan and India.",
-    keywords: "about vansikha tour travel, rajasthan travel agency",
-  },
-  "/about"
-);
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Meet Vansikha Tour & Travel — a Jaipur-based travel company crafting personal Rajasthan and India journeys.",
+}
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-32 text-zinc-300">
-      <h1 className="text-4xl font-serif font-bold text-white mb-8">About {siteConfig.businessName}</h1>
-
-      <div className="space-y-6 leading-relaxed">
-        <p>
-          {siteConfig.businessName} is a travel service based in {siteConfig.city}, {siteConfig.state},
-          offering tour packages across Rajasthan and other parts of India, along with car rental services
-          for local sightseeing and outstation trips.
-        </p>
-        <p>
-          We help plan Rajasthan tours covering destinations such as Jaipur, Udaipur, Jaisalmer and Pushkar,
-          as well as select tours to other Indian destinations. Itineraries can be customized based on your
-          travel dates, group size and interests.
-        </p>
-        <p>
-          For booking enquiries or to discuss a custom itinerary, reach us at{" "}
-          <a href={`mailto:${siteConfig.email}`} className="text-amber-400 hover:underline">
-            {siteConfig.email}
-          </a>{" "}
-          or call{" "}
-          <a href={`tel:+${siteConfig.phoneRaw}`} className="text-amber-400 hover:underline">
-            {siteConfig.phoneDisplay}
-          </a>
-          .
-        </p>
-        <p className="text-sm text-amber-400/80 border border-amber-500/20 bg-amber-500/5 rounded-lg p-4 mt-8">
-          This page intentionally does not list years of experience, awards, or customer numbers, since
-          those weren&apos;t part of the original source content. Add real, verifiable details here when available.
-        </p>
+    <>
+      <PageHero
+        image="/images/city-palace-udaipur.jpg"
+        eyebrow="About us"
+        title="Born in Jaipur. Built on hospitality."
+        description="Atithi Devo Bhava — the guest is god. It is the oldest Rajasthani tradition, and the one we build every journey around."
+        crumbs={[{ href: "/about", label: "About" }]}
+      />
+      <div className="bg-ink pt-8 sm:pt-10">
+        <StatsStrip />
       </div>
-    </div>
-  );
+      <section className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:py-16 md:px-8 md:py-20 lg:grid-cols-2">
+        <SectionHeading
+          eyebrow="Our story"
+          title="From a single car to complete holidays across India"
+          description="Vansikha Tour & Travel began in Jaipur with one simple promise: treat every traveller like family. What started as local car rentals and city tours has grown into a full travel company offering Rajasthan circuits, Golden Triangle tours, pilgrimages and holidays across India — while keeping the same personal touch."
+        />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+            <Image src="/images/hawa-mahal.jpg" alt="Hawa Mahal, Jaipur" fill sizes="25vw" className="object-cover" />
+          </div>
+          <div className="relative mt-8 sm:mt-10 aspect-[3/4] overflow-hidden rounded-2xl">
+            <Image src="/images/about-guide.png" alt="Our guide with travellers" fill sizes="25vw" className="object-cover" />
+          </div>
+        </div>
+      </section>
+      <section className="bg-secondary/60 py-12 sm:py-16 md:py-20">
+        <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 md:px-8">
+          <div className="rounded-2xl bg-card p-6 sm:p-8 ring-1 ring-border">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Our mission</p>
+            <p className="mt-3.5 font-serif text-lg sm:text-xl leading-relaxed">
+              To make travelling in India easy, safe and joyful — with honest prices and genuinely caring service.
+            </p>
+          </div>
+          <div className="rounded-2xl bg-primary p-6 sm:p-8 text-primary-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Our vision</p>
+            <p className="mt-3.5 font-serif text-lg sm:text-xl leading-relaxed">
+              To be the most trusted travel partner from Rajasthan, known for turning trips into lifelong memories.
+            </p>
+          </div>
+        </div>
+      </section>
+      <WhyChooseUs />
+      <Testimonials />
+      <CtaBand />
+    </>
+  )
 }

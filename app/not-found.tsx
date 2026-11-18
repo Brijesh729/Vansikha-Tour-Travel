@@ -1,28 +1,14 @@
-import Link from "next/link";
+import Link from "next/link"
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-6 text-center bg-zinc-900">
-      <div>
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
-          Looks like this journey took an unexpected turn.
-        </h1>
-        <p className="text-zinc-400 mb-10">The page you&apos;re looking for doesn&apos;t exist.</p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link
-            href="/tours"
-            className="px-6 py-3 rounded-full bg-amber-500 text-black font-medium hover:bg-amber-400 transition"
-          >
-            Explore Rajasthan Tours
-          </Link>
-          <Link
-            href="/"
-            className="px-6 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 transition"
-          >
-            Back Home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+    <section className="flex min-h-[70vh] flex-col items-center justify-center bg-ink px-5 pt-20 text-center text-white">
+      <p className="font-serif text-6xl sm:text-7xl text-accent font-semibold">404</p>
+      <h1 className="mt-3 text-2xl sm:text-3xl font-serif">This road leads nowhere</h1>
+      <p className="mt-3 max-w-md text-xs sm:text-sm text-white/70">The page you&apos;re looking for has wandered off. Let&apos;s get you back on route.</p>
+      <Link href="/" className="mt-6 rounded-full bg-accent px-6 py-2.5 text-xs sm:text-sm font-medium text-ink">
+        Back to home
+      </Link>
+    </section>
+  )
 }
